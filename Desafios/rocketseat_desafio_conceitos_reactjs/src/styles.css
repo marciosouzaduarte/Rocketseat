@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+}
+
+#div-listagem {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    border: 1px solid lightgray;
+}
+
+div {
+    width: 100%;
+    margin: 20px;
+}
+
+div li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div li+li {
+    margin-top: 15px;
+}
+
+input {
+    margin: 5px;
+}
+
+button {
+    background: #7159c1;
+    color: #fff;
+    border: 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+div li button {
+    margin: 0 15px;
+    background: #ca4949;
+}
+
+#button-adicionar {
+    margin-bottom: 25px;
+}

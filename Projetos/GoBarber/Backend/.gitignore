@@ -1,0 +1,10 @@
+/coverage
+/node_modules
+/dist
+/.env
+/temp/*
+!/temp/.gitkeep
+/temp/avatar/*
+!/temp/avatar
+!/temp/avatar/.gitkeep
+

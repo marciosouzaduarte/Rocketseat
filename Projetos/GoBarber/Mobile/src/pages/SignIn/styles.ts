@@ -1,0 +1,48 @@
+import { Platform } from 'react-native';
+import styled from 'styled-components/native';
+import { FontFamily } from '../../styles/GlobalStyle';
+
+export const Container = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px ${Platform.OS === 'android' ? 150 : 50}px;
+`;
+
+export const Title = styled.Text`
+  font-size: 20px;
+  color: #f4ede8;
+  font-family: 'RobotoSlab-Medium';
+  margin: 64px 0 24px;
+`;
+
+export const ForgotPasswordButton = styled.TouchableOpacity`
+  margin-top: 24px;
+`;
+
+export const ForgotPasswordText = styled.Text`
+  font-size: 16px;
+  color: #f4ede8;
+  font-family: '${FontFamily}-Regular';
+`;
+
+export const CreateAccountButton = styled.TouchableOpacity`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #312e38;
+  border-top-width: 1px;
+  border-color: #232129;
+  padding: 16px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CreateAccountText = styled.Text`
+  font-size: 16px;
+  color: #ff9000;
+  font-family: '${FontFamily}-Regular';
+  margin-left: 16px;
+`;
