@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { startOfHour } from 'date-fns';
+import { getHours, isBefore, startOfHour } from 'date-fns';
 
 import AppError from '@shared/errors/AppError';
 
@@ -16,9 +16,22 @@ export default class CreateScheduleService {
 
   public async execute({
     provider_id,
+    user_id,
     date,
   }: ICreateScheduleDTO): Promise<SchedulesModel> {
     const scheduleDate = startOfHour(date);
+
+    if (user_id === provider_id) {
+      throw new AppError(`You can't create a schedule for yourself`);
+    }
+
+    if (isBefore(scheduleDate, Date.now())) {
+      throw new AppError(`You can't create a schedule in the past`);
+    }
+
+    if (getHours(scheduleDate) < 8 || getHours(scheduleDate) > 17) {
+      throw new AppError(`You can't create a schedule in this hours`);
+    }
 
     const thereIsScheduleOnTheSameDate = await this.schedulesRepository.findByDate(
       scheduleDate,
@@ -30,6 +43,7 @@ export default class CreateScheduleService {
 
     const schedule = await this.schedulesRepository.insert({
       provider_id,
+      user_id,
       date: scheduleDate,
     });
 

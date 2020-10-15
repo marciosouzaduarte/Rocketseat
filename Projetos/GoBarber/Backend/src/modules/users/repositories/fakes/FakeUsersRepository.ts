@@ -3,6 +3,7 @@ import { v4 } from 'uuid';
 import UsersModel from '@models/UsersModel';
 import IUsersRepository from '@modules/users/repositories/interfaces/IUsersRepository';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
+import IFindAllProvidersDTO from '@modules/users/dtos/IFindAllProvidersDTO';
 
 export default class FakeUsersRepository implements IUsersRepository {
   private users: UsersModel[] = [];
@@ -17,6 +18,18 @@ export default class FakeUsersRepository implements IUsersRepository {
 
   public async findAll(): Promise<UsersModel[]> {
     return this.users;
+  }
+
+  public async findAllProviders({
+    except_user_id,
+  }: IFindAllProvidersDTO): Promise<UsersModel[]> {
+    let { users } = this;
+
+    if (except_user_id) {
+      users = this.users.filter(user => user.id !== except_user_id);
+    }
+
+    return users;
   }
 
   public async insert({

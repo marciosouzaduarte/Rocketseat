@@ -15,12 +15,23 @@ export default class SchedulesModel {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  // coluna
   @Column('varchar')
   provider_id: string;
 
+  // relacionamento
   @ManyToOne(() => UsersModel)
   @JoinColumn({ name: 'provider_id' })
   provider: UsersModel;
+
+  // coluna
+  @Column('varchar')
+  user_id: string;
+
+  // relacionamento
+  @ManyToOne(() => UsersModel)
+  @JoinColumn({ name: 'user_id' })
+  user: UsersModel;
 
   @Column('time with time zone')
   date: Date;

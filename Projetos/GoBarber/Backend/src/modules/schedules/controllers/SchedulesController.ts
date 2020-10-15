@@ -8,13 +8,18 @@ import CreateScheduleService from '@modules/schedules/services/CreateScheduleSer
 
 export default class SchedulesController {
   public async create(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
     const { provider_id, date } = request.body;
 
     const parsedDate = parseISO(date);
 
     const service = container.resolve(CreateScheduleService);
 
-    const schedule = await service.execute({ provider_id, date: parsedDate });
+    const schedule = await service.execute({
+      provider_id,
+      user_id,
+      date: parsedDate,
+    });
 
     return response.status(201).send(schedule);
   }
