@@ -1,5 +1,6 @@
 import AppError from '@shared/errors/AppError';
 
+import FakeNotificationsRepository from '@modules/notifications/repositories/fakes/FakeNotificationsRepository';
 import FakeSchedulesRepository from '../repositories/fakes/FakeSchedulesRepository';
 
 import CreateScheduleService from './CreateScheduleService';
@@ -10,15 +11,20 @@ interface INewScheduleInterface {
   provider_id: string;
 }
 
+let fakeNotificationsRepository: FakeNotificationsRepository;
 let fakeSchedulesRepository: FakeSchedulesRepository;
 let createSchedule: CreateScheduleService;
 let newSchedule: INewScheduleInterface;
 
 describe('CreateScheduleService', () => {
   beforeEach(() => {
+    fakeNotificationsRepository = new FakeNotificationsRepository();
     fakeSchedulesRepository = new FakeSchedulesRepository();
 
-    createSchedule = new CreateScheduleService(fakeSchedulesRepository);
+    createSchedule = new CreateScheduleService(
+      fakeSchedulesRepository,
+      fakeNotificationsRepository,
+    );
 
     jest.spyOn(Date, 'now').mockImplementationOnce(() => {
       return new Date(2020, 4, 10, 13).getTime();

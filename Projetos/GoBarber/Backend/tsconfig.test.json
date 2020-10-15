@@ -11,7 +11,8 @@
       "@models/*": ["models/*"],
       "@modules/*": ["modules/*"],
       "@configs/*": ["configs/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@schemas/*": ["schemas/*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
