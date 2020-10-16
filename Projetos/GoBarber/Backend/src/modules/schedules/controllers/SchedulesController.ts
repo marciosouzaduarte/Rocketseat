@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { parseISO } from 'date-fns';
-
 import SchedulesRepository from '@modules/schedules/repositories/typeorm/SchedulesRepository';
 import CreateScheduleService from '@modules/schedules/services/CreateScheduleService';
 
@@ -11,14 +9,12 @@ export default class SchedulesController {
     const user_id = request.user.id;
     const { provider_id, date } = request.body;
 
-    const parsedDate = parseISO(date);
-
     const service = container.resolve(CreateScheduleService);
 
     const schedule = await service.execute({
       provider_id,
       user_id,
-      date: parsedDate,
+      date,
     });
 
     return response.status(201).send(schedule);

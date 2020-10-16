@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import { errors as CelebrateErrors } from 'celebrate';
 
 import 'express-async-errors';
 
@@ -26,6 +27,7 @@ app.use('/files', express.static(avatarConfig.uploadsFolder));
 // rotas utilizadas
 app.use(routes);
 
+app.use(CelebrateErrors());
 app.use(GlobalError);
 
 const port = process.env.APP_PORT || 3333;
