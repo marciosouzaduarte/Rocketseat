@@ -1,9 +1,6 @@
 import { sign, verify } from 'jsonwebtoken';
-import dotenv from 'dotenv';
 
 import ITokenProvider from '../models/ITokenProvider';
-
-dotenv.config();
 
 export default class JWTProvider implements ITokenProvider {
   public async sign(subject: string): Promise<string> {

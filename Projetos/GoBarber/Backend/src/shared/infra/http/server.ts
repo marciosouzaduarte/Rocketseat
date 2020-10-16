@@ -1,7 +1,7 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import { errors as CelebrateErrors } from 'celebrate';
 
@@ -14,8 +14,6 @@ import '@shared/infra/database';
 import '@shared/container';
 
 import routes from './routes';
-
-dotenv.config();
 
 const app = express();
 app.use(cors());

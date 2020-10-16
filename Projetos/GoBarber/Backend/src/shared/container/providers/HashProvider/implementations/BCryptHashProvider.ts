@@ -1,9 +1,6 @@
 import { hash, compare } from 'bcryptjs';
-import dotenv from 'dotenv';
 
 import IHashProvider from '../models/IHashProvider';
-
-dotenv.config();
 
 export default class BCryptHashProvider implements IHashProvider {
   public async generateHash(payload: string): Promise<string> {
