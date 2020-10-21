@@ -3,7 +3,7 @@ import { celebrate, Joi, Segments } from 'celebrate';
 import multer from 'multer';
 
 import avatarConfig from '@configs/uploadAvatar.config';
-import Autheticated from '@shared/infra/http/middleware/authenticated.middleware';
+import autheticated from '@shared/infra/http/middleware/autenticacao';
 
 import UsersController from '../controllers/UsersController';
 import UserAvatarController from '../controllers/UserAvatarController';
@@ -29,7 +29,7 @@ router.get('/', usersController.list);
 
 router.patch(
   '/avatar',
-  Autheticated,
+  autheticated,
   upload.single('avatar'),
   userAvatarController.update,
 );

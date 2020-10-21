@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 
-import Autheticated from '@shared/infra/http/middleware/authenticated.middleware';
+import autheticated from '@shared/infra/http/middleware/autenticacao';
 
 import ProfileController from '../controllers/ProfileController';
 
@@ -9,7 +9,7 @@ const router = Router();
 const profileController = new ProfileController();
 
 // todas as rotas precisarão de autenticação
-router.use(Autheticated);
+router.use(autheticated);
 
 router.put(
   '/',

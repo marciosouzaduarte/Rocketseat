@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 
-import Autheticated from '@shared/infra/http/middleware/authenticated.middleware';
+import autheticated from '@shared/infra/http/middleware/autenticacao';
 
 import SchedulesController from '../controllers/SchedulesController';
 import ProviderSchedulesController from '../controllers/ProviderSchedulesController';
@@ -11,7 +11,7 @@ const schedulesController = new SchedulesController();
 const providerSchedulesController = new ProviderSchedulesController();
 
 // os acessos precisam ser autenticados
-router.use(Autheticated);
+router.use(autheticated);
 
 router.post(
   '/',

@@ -14,7 +14,7 @@ interface IRequest {
 @injectable()
 export default class ListProviderSchedulesService {
   constructor(
-    @inject('ISchedulesRepository')
+    @inject('SchedulesRepository')
     private schedulesRepository: ISchedulesRepository,
   ) {}
 

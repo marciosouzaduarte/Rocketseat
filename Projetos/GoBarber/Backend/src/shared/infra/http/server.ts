@@ -10,12 +10,14 @@ import 'express-async-errors';
 import GlobalError from '@shared/errors/GlobalError';
 import avatarConfig from '@configs/uploadAvatar.config';
 
+import limiter from '@shared/infra/http/middleware/limiter';
 import '@shared/infra/database';
 import '@shared/container';
 
 import routes from './routes';
 
 const app = express();
+app.use(limiter);
 app.use(cors());
 app.use(express.json());
 
