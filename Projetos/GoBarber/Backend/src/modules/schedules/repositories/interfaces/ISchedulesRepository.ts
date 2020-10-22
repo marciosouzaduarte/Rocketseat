@@ -9,7 +9,10 @@ export default interface ISchedulesRepository {
 
   // shows / list
   findAll(): Promise<SchedulesModel[]>;
-  findByDate(date: Date): Promise<SchedulesModel | undefined>;
+  findByDate(
+    date: Date,
+    provider_id: string,
+  ): Promise<SchedulesModel | undefined>;
 
   findAllInMonthFromProvider(
     data: IFindAllInMonthFromProviderDTO,

@@ -13,9 +13,12 @@ export default class SchedulesRepository implements ISchedulesRepository {
     this.ormRepository = getRepository(SchedulesModel);
   }
 
-  public async findByDate(date: Date): Promise<SchedulesModel | undefined> {
+  public async findByDate(
+    date: Date,
+    provider_id: string,
+  ): Promise<SchedulesModel | undefined> {
     const findSchedule = await this.ormRepository.findOne({
-      where: { date },
+      where: { date, provider_id },
     });
 
     return findSchedule;
@@ -63,6 +66,7 @@ export default class SchedulesRepository implements ISchedulesRepository {
             `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`,
         ),
       },
+      relations: ['user'],
     });
 
     return findSchedules;

@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { getDate, getDaysInMonth } from 'date-fns';
+import { getDate, getDaysInMonth, isAfter } from 'date-fns';
 
 import ISchedulesRepository from '../repositories/interfaces/ISchedulesRepository';
 
@@ -42,13 +42,16 @@ export default class ListProviderMonthAvailabilityService {
     );
 
     const availability = forEachDayArray.map(day => {
+      const compareDate = new Date(year, month - 1, day, 23, 59, 59);
+
       const schedulesInDay = schedules.filter(
         schedule => getDate(schedule.date) === day,
       );
 
       return {
         day,
-        available: schedulesInDay.length < 10,
+        available:
+          isAfter(compareDate, new Date()) && schedulesInDay.length < 10,
       };
     });
 

@@ -39,6 +39,7 @@ export default class CreateScheduleService {
 
     const thereIsScheduleOnTheSameDate = await this.schedulesRepository.findByDate(
       scheduleDate,
+      provider_id,
     );
 
     if (thereIsScheduleOnTheSameDate) {

@@ -10,9 +10,13 @@ import IFindAllInDayFromProviderDTO from '@modules/schedules/dtos/IFindAllInDayF
 export default class FakeSchedulesRepository implements ISchedulesRepository {
   private schedules: SchedulesModel[] = [];
 
-  public async findByDate(date: Date): Promise<SchedulesModel | undefined> {
-    const findSchedule = this.schedules.find(schedule =>
-      isEqual(schedule.date, date),
+  public async findByDate(
+    date: Date,
+    provider_id: string,
+  ): Promise<SchedulesModel | undefined> {
+    const findSchedule = this.schedules.find(
+      schedule =>
+        isEqual(schedule.date, date) && provider_id === schedule.provider_id,
     );
 
     return findSchedule;
