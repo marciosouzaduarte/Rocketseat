@@ -4,13 +4,20 @@ import React, {
   useCallback,
   useContext,
   useEffect,
-  useState
+  useState,
 } from 'react';
 import api from '../services/api';
 
+interface IUser {
+  id: string;
+  email: string;
+  name: string;
+  avatar_url: string;
+}
+
 interface AuthState {
   token: string;
-  user: Record<string, unknown>;
+  user: IUser;
 }
 
 interface SigInCredentials {
@@ -19,7 +26,7 @@ interface SigInCredentials {
 }
 
 interface AuthContextData {
-  user: Record<string, unknown>;
+  user: IUser;
   loading: boolean;
   signIn(credentials: SigInCredentials): Promise<void>;
   signOut(): void;
@@ -39,6 +46,8 @@ const AuthProvider: React.FC = ({ children }) => {
       ]);
 
       if (token[1] && user[1]) {
+        api.defaults.headers.authorization = `Bearer ${token[1]}`;
+
         setAuthData({ token: token[1], user: JSON.parse(user[1]) });
       }
 
@@ -60,6 +69,8 @@ const AuthProvider: React.FC = ({ children }) => {
       [`@GoBarberMobile:token`, token],
       [`@GoBarberMobile:user`, JSON.stringify(user)],
     ]);
+
+    api.defaults.headers.authorization = `Bearer ${token}`;
 
     setAuthData({ token, user });
   }, []);

@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  View
+  View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import * as Yup from 'yup';
@@ -21,7 +21,7 @@ import {
   BackToSignInButton,
   BackToSignInText,
   Container,
-  Title
+  Title,
 } from './styles';
 
 const SignUp: React.FC = () => {

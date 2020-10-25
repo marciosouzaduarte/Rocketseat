@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  View
+  View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import * as Yup from 'yup';
@@ -23,7 +23,7 @@ import {
   CreateAccountText,
   ForgotPasswordButton,
   ForgotPasswordText,
-  Title
+  Title,
 } from './styles';
 
 interface FormData {
@@ -36,7 +36,7 @@ const SignIn: React.FC = () => {
   const navigation = useNavigation();
 
   const { signIn, user } = useAuth();
-  console.log('user :>> ', user);
+
   const validationFormFromSchema = async (dataFromForm: FormData) => {
     const schemaValidation = Yup.object().shape({
       email: Yup.string()
@@ -122,7 +122,7 @@ const SignIn: React.FC = () => {
             </Button>
           </Form>
 
-          <ForgotPasswordButton onPress={() => { }}>
+          <ForgotPasswordButton onPress={() => {}}>
             <ForgotPasswordText>Esqueci minha Senha</ForgotPasswordText>
           </ForgotPasswordButton>
         </Container>
