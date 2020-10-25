@@ -6,6 +6,7 @@ import IHashProvider from '@shared/container/providers/HashProvider/models/IHash
 
 import UsersModel from '@models/UsersModel';
 import IUsersRepository from '@modules/users/repositories/interfaces/IUsersRepository';
+import { classToClass } from 'class-transformer';
 
 interface IRequest {
   id: string;
@@ -66,10 +67,6 @@ export default class UpdateUserService {
 
     await this.usersRepository.update(user);
 
-    const tempUser = Object.assign(user);
-
-    delete tempUser.password;
-
-    return tempUser;
+    return classToClass(user);
   }
 }

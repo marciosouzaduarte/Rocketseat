@@ -7,6 +7,7 @@ import IStorageProvider from '@shared/container/providers/StorageProvider/models
 import UsersModel from '@models/UsersModel';
 import IUsersRepository from '@modules/users/repositories/interfaces/IUsersRepository';
 import IUpdateUserAvatarDTO from '@modules/users/dtos/IUpdateUserAvatarDTO';
+import { classToClass } from 'class-transformer';
 
 @injectable()
 export default class UpdateUserAvatarService {
@@ -38,10 +39,6 @@ export default class UpdateUserAvatarService {
 
     await this.usersRepository.update(user);
 
-    const tempUser = Object.assign(user);
-
-    delete tempUser.password;
-
-    return tempUser;
+    return classToClass(user);
   }
 }

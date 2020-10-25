@@ -17,12 +17,14 @@ import '@shared/container';
 import routes from './routes';
 
 const app = express();
-app.use(limiter);
 app.use(cors());
 app.use(express.json());
 
 // local estático para acesso dos arquivos
 app.use('/files', express.static(avatarConfig.uploadsFolder));
+
+// limitar excesso em todas as rotas a partir daqui
+app.use(limiter);
 
 // rotas utilizadas
 app.use(routes);

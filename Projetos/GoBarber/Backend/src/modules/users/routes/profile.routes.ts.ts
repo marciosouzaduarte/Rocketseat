@@ -24,6 +24,7 @@ router.put(
   }),
   profileController.update,
 );
+
 router.get('/', profileController.show);
 
 export default router;
