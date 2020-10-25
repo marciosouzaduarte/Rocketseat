@@ -5,9 +5,16 @@ import api from '../services/api';
 
 dotenv.config();
 
+interface User {
+  avatar_url: string;
+  email: string;
+  id: string;
+  name: string;
+}
+
 interface AuthState {
   token: string;
-  user: Record<string, unknown>;
+  user: User;
 }
 
 interface SigInCredentials {
@@ -16,9 +23,10 @@ interface SigInCredentials {
 }
 
 interface AuthContextData {
-  user: Record<string, unknown>;
+  user: User;
   signIn(credentials: SigInCredentials): Promise<void>;
   signOut(): void;
+  updateUser(user: User): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -29,6 +37,8 @@ const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem(`${process.env.LOCAL_STORAGE}:user`);
 
     if (token && user) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
       return {
         token,
         user: JSON.parse(user),
@@ -52,6 +62,8 @@ const AuthProvider: React.FC = ({ children }) => {
       JSON.stringify(user),
     );
 
+    api.defaults.headers.authorization = `Bearer ${token}`;
+
     setAuthData({ token, user });
   }, []);
 
@@ -61,8 +73,24 @@ const AuthProvider: React.FC = ({ children }) => {
     setAuthData({} as AuthState);
   }, []);
 
+  const updateUser = useCallback(
+    (user: User) => {
+      localStorage.setItem(
+        `${process.env.LOCAL_STORAGE}:user`,
+        JSON.stringify(user),
+      );
+
+      setAuthData({
+        token: authData.token,
+        user,
+      });
+    },
+    [authData],
+  );
+
   return (
-    <AuthContext.Provider value={{ user: authData.user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user: authData.user, signIn, signOut, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
