@@ -13,6 +13,7 @@ import {
   ProviderContainer,
   ProviderInfo,
   ProviderList,
+  ProviderListTitle,
   ProviderMeta,
   ProviderMetaText,
   ProviderName,
@@ -44,6 +45,13 @@ const Dashboard: React.FC = () => {
     navigate('Profile');
   }, [navigate]);
 
+  const navigateToCreateSchedule = useCallback(
+    (providerID: string) => {
+      navigate('CreateSchedule', { providerID });
+    },
+    [navigate],
+  );
+
   return (
     <Container>
       <Header>
@@ -61,9 +69,14 @@ const Dashboard: React.FC = () => {
       <ProviderList
         data={providers}
         keyExtractor={provider => provider.id}
+        ListHeaderComponent={
+          <ProviderListTitle>Cabeleireiros</ProviderListTitle>
+        }
         renderItem={({ item: provider }) => (
-          <ProviderContainer onPress={() => {}}>
-            <ProviderAvatar src={{ uri: provider.avatar_url }} />
+          <ProviderContainer
+            onPress={() => navigateToCreateSchedule(provider.id)}
+          >
+            <ProviderAvatar source={{ uri: provider.avatar_url }} />
             <ProviderInfo>
               <ProviderName>{provider.name}</ProviderName>
 
