@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import Breakline from '../../components/Breakline';
 import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
@@ -9,7 +9,13 @@ import {
   Header,
   HeaderTitle,
   ProfileButton,
+  ProviderAvatar,
+  ProviderContainer,
+  ProviderInfo,
   ProviderList,
+  ProviderMeta,
+  ProviderMetaText,
+  ProviderName,
   UserAvatar,
   UserName,
 } from './styles';
@@ -55,7 +61,24 @@ const Dashboard: React.FC = () => {
       <ProviderList
         data={providers}
         keyExtractor={provider => provider.id}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
+        renderItem={({ item: provider }) => (
+          <ProviderContainer onPress={() => {}}>
+            <ProviderAvatar src={{ uri: provider.avatar_url }} />
+            <ProviderInfo>
+              <ProviderName>{provider.name}</ProviderName>
+
+              <ProviderMeta>
+                <Icon name="calendar" size={14} color="#ff9000" />
+                <ProviderMetaText>Segunda à Sexta</ProviderMetaText>
+              </ProviderMeta>
+
+              <ProviderMeta>
+                <Icon name="clock" size={14} color="#ff9000" />
+                <ProviderMetaText>8h às 18h</ProviderMetaText>
+              </ProviderMeta>
+            </ProviderInfo>
+          </ProviderContainer>
+        )}
       />
     </Container>
   );
