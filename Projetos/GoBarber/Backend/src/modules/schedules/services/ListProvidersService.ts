@@ -24,6 +24,7 @@ export default class ListProvidersService {
     let users = await this.cacheProvider.recover<UsersModel[]>(
       `provider-list:${user_id}`,
     );
+    users = null;
 
     if (!users) {
       users = await this.usersRepository.findAllProviders({

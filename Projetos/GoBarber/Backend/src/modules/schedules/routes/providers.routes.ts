@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 
-import autheticated from '@shared/infra/http/middleware/autenticacao';
+import authenticated from '@shared/infra/http/middleware/autenticacao';
 
 import ProvidersController from '../controllers/ProvidersController';
 import ProviderDayAvailabilityController from '../controllers/ProviderDayAvailabilityController';
@@ -13,7 +13,7 @@ const providerDayAvailabilityController = new ProviderDayAvailabilityController(
 const providerMonthAvailabilityController = new ProviderMonthAvailabilityController();
 
 // os acessos precisam ser autenticados
-router.use(autheticated);
+router.use(authenticated);
 
 router.get('/', providersController.index);
 
