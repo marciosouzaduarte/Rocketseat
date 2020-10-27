@@ -109,16 +109,10 @@ const SignUp: React.FC = () => {
               secureTextEntry
               textContentType="newPassword"
               returnKeyType="send"
-              onSubmitEditing={() => {
-                formRef.current?.submitForm();
-              }}
+              onSubmitEditing={() => formRef.current?.submitForm()}
             />
 
-            <Button
-              onPress={() => {
-                formRef.current?.submitForm();
-              }}
-            >
+            <Button onPress={() => formRef.current?.submitForm()}>
               Entrar
             </Button>
           </Form>

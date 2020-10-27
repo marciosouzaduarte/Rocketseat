@@ -26,7 +26,7 @@ import {
   Title,
 } from './styles';
 
-interface FormData {
+interface FormularioData {
   email: string;
   password: string;
 }
@@ -37,7 +37,7 @@ const SignIn: React.FC = () => {
 
   const { signIn, user } = useAuth();
 
-  const validationFormFromSchema = async (dataFromForm: FormData) => {
+  const validationFormFromSchema = async (dataFromForm: FormularioData) => {
     const schemaValidation = Yup.object().shape({
       email: Yup.string()
         .required('Email: Campo Obrigatório')
@@ -49,7 +49,7 @@ const SignIn: React.FC = () => {
   };
 
   const handleSubmit = useCallback(
-    async (dataFromForm: FormData): Promise<void> => {
+    async (dataFromForm: FormularioData): Promise<void> => {
       try {
         await validationFormFromSchema(dataFromForm);
 
@@ -108,21 +108,15 @@ const SignIn: React.FC = () => {
               secureTextEntry
               textContentType="newPassword"
               returnKeyType="send"
-              onSubmitEditing={() => {
-                formRef.current?.submitForm();
-              }}
+              onSubmitEditing={() => formRef.current?.submitForm()}
             />
 
-            <Button
-              onPress={() => {
-                formRef.current?.submitForm();
-              }}
-            >
+            <Button onPress={() => formRef.current?.submitForm()}>
               Entrar
             </Button>
           </Form>
 
-          <ForgotPasswordButton onPress={() => {}}>
+          <ForgotPasswordButton onPress={() => navigation.navigate('SignUp')}>
             <ForgotPasswordText>Esqueci minha Senha</ForgotPasswordText>
           </ForgotPasswordButton>
         </Container>
