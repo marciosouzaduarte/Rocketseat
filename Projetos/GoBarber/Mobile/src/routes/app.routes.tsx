@@ -10,8 +10,7 @@ const App = createStackNavigator();
 const AppRoutes: React.FC = () => (
   <App.Navigator
     screenOptions={{
-      headerStatusBarHeight: -35,
-      headerTitle: '',
+      headerShown: false,
       cardStyle: { backgroundColor: '#312e38' },
     }}
   >
