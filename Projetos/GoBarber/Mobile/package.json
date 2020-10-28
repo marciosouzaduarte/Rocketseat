@@ -24,7 +24,8 @@
     "eslint-plugin-jsx-a11y": "^6.3.0",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4",
-    "react": "16.13.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-native": "0.63.2",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-image-picker": "^2.3.4",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
+    "@babel/plugin-transform-react-jsx": "^7.12.1",
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
     "@types/jest": "^25.2.3",
