@@ -151,7 +151,8 @@ const Profile: React.FC = () => {
             email: user.email,
           }}
           onSubmit={handleSubmit}
-          ref={formRef}>
+          ref={formRef}
+        >
           <AvatarInput>
             <img src={user.avatar_url} alt={user.name} />
             <label htmlFor="avatar">

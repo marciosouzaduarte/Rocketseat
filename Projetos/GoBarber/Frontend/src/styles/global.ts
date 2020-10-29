@@ -2,9 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   :root {
-    --var-primary-color: #ff9000; 
-    --var-primary-color-button: #ff9000; 
-    --var-primary-color-error: #c53030; 
+    --var-primary-color: #ff9000;
+    --var-primary-color-button: #ff9000;
+    --var-primary-color-error: #c53030;
   }
 
   * {
@@ -19,7 +19,7 @@ export default createGlobalStyle`
     color: #FFF;
     -webkit-font-smoothing: antialiased;
   }
-  
+
   body, input, button {
     font-family: 'Roboto Slab', serif;
     font-size: 1rem;

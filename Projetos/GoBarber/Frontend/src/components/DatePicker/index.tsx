@@ -7,7 +7,7 @@ import { Calendar } from './styles';
 
 const DatePicker: React.FC = () => {
   const [selectDate, setSelectDate] = useState(new Date());
-  const [currentMonth, setCurrentMonth] = useState(new Date());
+  // const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const handleDayChange = useCallback((day: Date, modifiers: DayModifiers) => {
     if (modifiers.available) {

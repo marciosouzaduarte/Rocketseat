@@ -26,8 +26,8 @@ const Route: React.FC<RouteProps> = ({
         return needAuth === !!user ? (
           <Component />
         ) : (
-            <Redirect to={{ pathname: needAuth ? '/' : '/dashboard' }} />
-          );
+          <Redirect to={{ pathname: needAuth ? '/' : '/dashboard' }} />
+        );
       }}
     />
   );

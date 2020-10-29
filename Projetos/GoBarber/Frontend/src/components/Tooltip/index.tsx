@@ -12,10 +12,10 @@ const Tooltip: React.FC<TooltipProps> = ({
   className = '',
   children,
 }) => (
-    <Container className={className}>
-      {children}
-      <span>{title}</span>
-    </Container>
-  );
+  <Container className={className}>
+    {children}
+    <span>{title}</span>
+  </Container>
+);
 
 export default Tooltip;
