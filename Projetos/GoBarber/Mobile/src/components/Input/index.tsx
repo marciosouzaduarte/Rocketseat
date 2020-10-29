@@ -12,7 +12,11 @@ interface InputValueReference {
   value: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, icon, ...anotherProps }) => {
+const Input: React.FC<InputProps> = ({
+  name,
+  icon,
+  ...anotherProps
+}: InputProps) => {
   const { registerField, defaultValue = '', fieldName, error } = useField(name);
   const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
   const inputElementRef = useRef<any>(null);

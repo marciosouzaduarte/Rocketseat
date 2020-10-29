@@ -1,6 +1,5 @@
-import styled from 'styled-components/native';
 import { Platform } from 'react-native';
-
+import styled from 'styled-components/native';
 import { FontFamily } from '../../styles/GlobalStyle';
 
 export const Container = styled.View`
